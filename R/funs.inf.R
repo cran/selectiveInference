@@ -228,8 +228,8 @@ TG.limits = function(Z, A, b, eta, Sigma=NULL) {
     rho = A %*% cross_cov / var_estimate
     vec = (b - as.numeric(A %*% resid)) / rho
 
-    vlo = suppressWarnings(max(vec[rho < 0]))
-    vup = suppressWarnings(min(vec[rho > 0]))
+    vlo = suppressWarnings(max(vec[rho < 0], na.rm=TRUE))
+    vup = suppressWarnings(min(vec[rho > 0], na.rm=TRUE))
 
     sd = sqrt(var_estimate)
     return(list(vlo=vlo, vup=vup, sd=sd, estimate=target_estimate))
